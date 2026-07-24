@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورود مدیر | یدک فروش</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin-login.css">
+</head>
+<body>
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">Y</div>
+      <h1>پنل مدیریت یدک فروش</h1>
+      <p>برای دسترسی به بخش مدیریت وارد شوید</p>
+    </div>
+
+    <div class="alert error" id="alertError">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z"/></svg>
+      <span id="errorMsg">نام کاربری یا رمز عبور اشتباه است</span>
+    </div>
+    <div class="alert success" id="alertSuccess">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      <span id="successMsg">ورود موفق!</span>
+    </div>
+    <div class="alert locked" id="alertLocked">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      <span id="lockedMsg">حساب شما به دلیل تلاش‌های ناموفق متعدد قفل شد. ۳۰ ثانیه صبر کنید.</span>
+    </div>
+
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <div class="form-group">
+        <label for="username">نام کاربری</label>
+        <div class="input-wrapper">
+          <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" autocomplete="off" required>
+          <svg class="icon-left" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">رمز عبور</label>
+        <div class="input-wrapper">
+          <input type="password" id="password" placeholder="رمز عبور خود را وارد کنید" required>
+          <svg class="icon-left" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          <button type="button" class="toggle-pass" onclick="togglePassword()">
+            <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">مرا به خاطر بسپار</label>
+        </label>
+        <a href="#" class="forgot-link" onclick="alert('برای بازیابی رمز با support@yadakijat.com تماس بگیرید');return false">فراموشی رمز؟</a>
+      </div>
+
+      <button type="submit" class="btn-login" id="btnLogin">
+        <svg viewBox="0 0 24 24"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v14z"/></svg>
+        ورود به پنل مدیریت
+      </button>
+
+      <div class="attempt-bar"><div class="attempt-fill" id="attemptFill" style="width:100%"></div></div>
+      <p style="font-size:.78rem;color:var(--text-light);text-align:center;margin-top:8px" id="attemptText">۵ تلاش باقی مانده</p>
+    </form>
+
+    <div class="security-info">
+      <p>🔐 امنیت: تمام اطلاعات رمزنگاری شده و در <strong>sessionStorage</strong> ذخیره می‌شود<br>پس از ۵ تلاش ناموفق، حساب ۳۰ ثانیه قفل می‌شود</p>
+    </div>
+
+    <div class="login-footer">
+      <p>داده‌های تستی: <code>admin</code> / <code>admin</code></p>
+    </div>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">→ بازگشت به سایت</a>
+  </div>
+</div>
+
+
+<script src="admin-login.js"></script>
+</body>
+</html>
